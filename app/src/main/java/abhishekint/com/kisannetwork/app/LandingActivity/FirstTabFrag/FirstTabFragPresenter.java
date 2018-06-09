@@ -10,4 +10,9 @@ public class FirstTabFragPresenter implements FirstTabFragPresenterInterface {
     public FirstTabFragPresenter(AdapterViewLayer adapterViewLayer) {
         this.adapterViewLayer = adapterViewLayer;
     }
+
+    @Override
+    public void getJsonDataForTabOne() {
+
+    }
 }

@@ -33,7 +33,12 @@ public class FirstTabFragment extends Fragment {
         initPresenter();
         initRecyclerAdapter();
         initRecycler();
+        getJsonData();
         return view;
+    }
+
+    private void getJsonData() {
+        firstTabFragPresenterInterface.getJsonDataForTabOne();
     }
 
     private void initRecyclerAdapter() {

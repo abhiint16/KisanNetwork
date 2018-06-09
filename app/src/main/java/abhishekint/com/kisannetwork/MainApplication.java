@@ -2,7 +2,7 @@ package abhishekint.com.kisannetwork;
 
 import android.app.Application;
 
-import abhishekint.com.kisannetwork.Modules.ApplicationContext;
+import abhishekint.com.kisannetwork.modules.ApplicationContext;
 
 /**
  * Created by abhishek on 09-06-2018.

@@ -1,6 +1,6 @@
 package abhishekint.com.kisannetwork;
 
-import abhishekint.com.kisannetwork.Modules.ApplicationContext;
+import abhishekint.com.kisannetwork.modules.ApplicationContext;
 import dagger.Component;
 
 /**
