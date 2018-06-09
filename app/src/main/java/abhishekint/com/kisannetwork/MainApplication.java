@@ -6,7 +6,7 @@ import android.app.Application;
  * Created by abhishek on 09-06-2018.
  */
 
-public class ApplicationMain extends Application{
+public class MainApplication extends Application{
     ModuleComponent moduleComponent;
 
     @Override
