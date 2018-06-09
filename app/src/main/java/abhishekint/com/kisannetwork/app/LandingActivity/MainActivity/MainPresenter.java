@@ -11,5 +11,5 @@ public class MainPresenter implements MainPresenterInterface {
     public MainPresenter(MainActivityInterface mainActivityInterface) {
         this.mainActivityInterface = mainActivityInterface;
     }
-    
+
 }
