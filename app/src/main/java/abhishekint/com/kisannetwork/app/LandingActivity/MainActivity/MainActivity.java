@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import abhishekint.com.kisannetwork.R;
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by abhishek on 09-06-2018.
@@ -22,10 +24,12 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
 
     MainPresenterInterface mainPresenterInterface;
     MainAdapter mainAdapter;
+    Unbinder unbinder;
 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+        unbinder=ButterKnife.bind(this);
         initPresenter();
         initTabLayout();
         initAdapter();
@@ -46,5 +50,11 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
 
     private void initPresenter() {
         mainPresenterInterface=new MainPresenter(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        unbinder.unbind();
     }
 }

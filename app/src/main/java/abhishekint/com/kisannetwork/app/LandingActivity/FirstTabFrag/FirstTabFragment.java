@@ -10,8 +10,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
+import abhishekint.com.kisannetwork.MainApplication;
 import abhishekint.com.kisannetwork.R;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.TabOneJsonClient;
+import abhishekint.com.kisannetwork.modules.ApplicationContext;
 import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Created by abhishek on 09-06-2018.
@@ -21,14 +28,20 @@ public class FirstTabFragment extends Fragment {
     @BindView(R.id.common_recycler)
     RecyclerView recyclerView;
 
+    @Inject
+    TabOneJsonClient tabOneJsonClient;
+
     RecyclerView.LayoutManager layoutManager;
     FirstTabFragPresenterInterface firstTabFragPresenterInterface;
     FirstTabFragmentRecyclerAdapter firstTabFragmentRecyclerAdapter;
     View view;
+    Unbinder unbinder;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.recyclerview_common,container,false);
+        ((MainApplication)getActivity().getApplicationContext()).getModuleComponent().tabOne(this);
+        unbinder= ButterKnife.bind(this,view);
         initLayoutManager();
         initPresenter();
         initRecyclerAdapter();
@@ -38,7 +51,7 @@ public class FirstTabFragment extends Fragment {
     }
 
     private void getJsonData() {
-        firstTabFragPresenterInterface.getJsonDataForTabOne();
+        firstTabFragPresenterInterface.getJsonDataForTabOne(firstTabFragmentRecyclerAdapter);
     }
 
     private void initRecyclerAdapter() {
@@ -46,7 +59,7 @@ public class FirstTabFragment extends Fragment {
     }
 
     private void initPresenter() {
-        firstTabFragPresenterInterface=new FirstTabFragPresenter(firstTabFragmentRecyclerAdapter);
+        firstTabFragPresenterInterface=new FirstTabFragPresenter(tabOneJsonClient);
     }
 
     private void initLayoutManager() {
@@ -56,5 +69,11 @@ public class FirstTabFragment extends Fragment {
     private void initRecycler() {
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(firstTabFragmentRecyclerAdapter);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        unbinder.unbind();
     }
 }

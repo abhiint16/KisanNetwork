@@ -5,5 +5,5 @@ package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag;
  */
 
 public interface FirstTabFragPresenterInterface {
-    void getJsonDataForTabOne();
+    void getJsonDataForTabOne(AdapterViewLayer adapterViewLayer);
 }
