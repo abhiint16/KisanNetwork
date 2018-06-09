@@ -1,4 +1,4 @@
-package abhishekint.com.kisannetwork;
+package abhishekint.com.kisannetwork.app.LandingActivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
+import abhishekint.com.kisannetwork.R;
 import butterknife.BindView;
 
 /**
