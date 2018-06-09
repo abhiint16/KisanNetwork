@@ -1,4 +1,4 @@
-package abhishekint.com.kisannetwork.app.LandingActivity;
+package abhishekint.com.kisannetwork.app.LandingActivity.MainActivity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
