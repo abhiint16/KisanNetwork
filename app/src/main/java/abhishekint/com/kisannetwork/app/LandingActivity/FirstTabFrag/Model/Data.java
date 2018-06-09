@@ -10,7 +10,7 @@ import java.util.List;
 public class Data {
     List<String> firstname=new ArrayList<>();
     List<String> lastname=new ArrayList<>();
-    List<String> phone=new ArrayList<>();
+    List<Long> phone=new ArrayList<>();
 
     public List<String> getFirstname() {
         return firstname;
@@ -28,11 +28,11 @@ public class Data {
         this.lastname = lastname;
     }
 
-    public List<String> getPhone() {
+    public List<Long> getPhone() {
         return phone;
     }
 
-    public void setPhone(List<String> phone) {
+    public void setPhone(List<Long> phone) {
         this.phone = phone;
     }
 }

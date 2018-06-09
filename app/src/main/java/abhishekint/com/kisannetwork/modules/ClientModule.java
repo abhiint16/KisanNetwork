@@ -4,6 +4,7 @@ import android.content.Context;
 
 import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.TabOneJsonClient;
 import abhishekint.com.kisannetwork.utils.JsonToString;
+import abhishekint.com.kisannetwork.utils.SixDigitRandomNo;
 import dagger.Module;
 import dagger.Provides;
 
@@ -17,5 +18,11 @@ public class ClientModule {
     @Provides
     TabOneJsonClient providesClient(Context context) {
         return new TabOneJsonClient(new JsonToString(context));
+    }
+
+    @Provides
+    SixDigitRandomNo providesRandomNoObject()
+    {
+        return new SixDigitRandomNo();
     }
 }

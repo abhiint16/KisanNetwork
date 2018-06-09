@@ -10,6 +10,8 @@ import org.json.JSONObject;
 import abhishekint.com.kisannetwork.utils.JsonToString;
 import io.reactivex.Observable;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * Created by abhishek on 09-06-2018.
  */
@@ -23,6 +25,7 @@ public class TabOneJsonClient {
     public Observable<Data> getData()
     {
         String dataString=jsonToString.loadJSONFromAsset();
+        Log.e("check for data",""+dataString);
         Data data=new Data();
         try {
             JSONObject obj = new JSONObject(dataString);
@@ -32,7 +35,7 @@ public class TabOneJsonClient {
                 JSONObject jo_inside = jArray.getJSONObject(i);
                 String firstname = jo_inside.getString("firstname");
                 String lastname = jo_inside.getString("lastname");
-                String phoneno = jo_inside.getString("phoneno");
+                Long phoneno = jo_inside.getLong("phoneno");
 
                 data.firstname.add(firstname);
                 data.lastname.add(lastname);

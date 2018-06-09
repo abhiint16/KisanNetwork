@@ -55,7 +55,7 @@ public class FirstTabFragment extends Fragment {
     }
 
     private void initRecyclerAdapter() {
-        firstTabFragmentRecyclerAdapter=new FirstTabFragmentRecyclerAdapter(firstTabFragPresenterInterface);
+        firstTabFragmentRecyclerAdapter=new FirstTabFragmentRecyclerAdapter(firstTabFragPresenterInterface,getActivity());
     }
 
     private void initPresenter() {
