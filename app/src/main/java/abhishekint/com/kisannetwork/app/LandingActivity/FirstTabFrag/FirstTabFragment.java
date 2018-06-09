@@ -22,14 +22,26 @@ public class FirstTabFragment extends Fragment {
     RecyclerView recyclerView;
 
     RecyclerView.LayoutManager layoutManager;
+    FirstTabFragPresenterInterface firstTabFragPresenterInterface;
+    FirstTabFragmentRecyclerAdapter firstTabFragmentRecyclerAdapter;
     View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view=inflater.inflate(R.layout.recyclerview_common,container,false);
         initLayoutManager();
+        initPresenter();
+        initRecyclerAdapter();
         initRecycler();
         return view;
+    }
+
+    private void initRecyclerAdapter() {
+        firstTabFragmentRecyclerAdapter=new FirstTabFragmentRecyclerAdapter(firstTabFragPresenterInterface);
+    }
+
+    private void initPresenter() {
+        firstTabFragPresenterInterface=new FirstTabFragPresenter(firstTabFragmentRecyclerAdapter);
     }
 
     private void initLayoutManager() {
@@ -38,5 +50,6 @@ public class FirstTabFragment extends Fragment {
 
     private void initRecycler() {
         recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setAdapter(firstTabFragmentRecyclerAdapter);
     }
 }
