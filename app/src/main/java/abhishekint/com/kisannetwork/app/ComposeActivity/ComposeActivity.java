@@ -1,8 +1,11 @@
 package abhishekint.com.kisannetwork.app.ComposeActivity;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -19,7 +22,7 @@ import butterknife.Unbinder;
  * Created by abhishek on 10-06-2018.
  */
 
-public class ComposeActivity extends AppCompatActivity implements ComposeActivityInterface {
+public class ComposeActivity extends AppCompatActivity implements ComposeActivityInterface, View.OnClickListener {
     @BindView(R.id.activity_compose_btn)
     Button activity_compose_btn;
     @BindView(R.id.activity_compose_tv)
@@ -30,6 +33,7 @@ public class ComposeActivity extends AppCompatActivity implements ComposeActivit
 
     Unbinder unbinder;
     ComposePresenterInterface composePresenterInterface;
+    int otp;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -38,6 +42,11 @@ public class ComposeActivity extends AppCompatActivity implements ComposeActivit
         ((MainApplication)getApplicationContext()).getModuleComponent().composeActivity(this);
         unbinder= ButterKnife.bind(this);
         initPresenter();
+        setBtnOnClick();
+    }
+
+    private void setBtnOnClick() {
+        activity_compose_btn.setOnClickListener(this);
     }
 
     private void initPresenter() {
@@ -48,6 +57,14 @@ public class ComposeActivity extends AppCompatActivity implements ComposeActivit
 
     @Override
     public void setText(int otp) {
+        this.otp=otp;
         activity_compose_tv.setText("Hi. Your OTP is: "+otp);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + getIntent().getLongExtra("phoneno",0)));
+        intent.putExtra("sms_body", "Hi. Your OTP is: "+otp);
+        startActivity(intent);
     }
 }
