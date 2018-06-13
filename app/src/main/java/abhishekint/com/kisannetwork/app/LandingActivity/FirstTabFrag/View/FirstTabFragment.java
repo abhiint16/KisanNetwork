@@ -1,4 +1,4 @@
-package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag;
+package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -9,13 +9,16 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import abhishekint.com.kisannetwork.MainApplication;
 import abhishekint.com.kisannetwork.R;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Presenter.FirstTabFragPresenter;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Presenter.FirstTabFragPresenterInterface;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View.Adapter.FirstTabFragmentRecyclerAdapter;
 import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.TabOneJsonClient;
-import abhishekint.com.kisannetwork.modules.ApplicationContext;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -24,7 +27,7 @@ import butterknife.Unbinder;
  * Created by abhishek on 09-06-2018.
  */
 
-public class FirstTabFragment extends Fragment {
+public class FirstTabFragment extends Fragment implements FirstTabFragmentInterface{
     @BindView(R.id.common_recycler)
     RecyclerView recyclerView;
 
@@ -59,7 +62,7 @@ public class FirstTabFragment extends Fragment {
     }
 
     private void initPresenter() {
-        firstTabFragPresenterInterface=new FirstTabFragPresenter(tabOneJsonClient);
+        firstTabFragPresenterInterface=new FirstTabFragPresenter(tabOneJsonClient,this);
     }
 
     private void initLayoutManager() {
@@ -72,8 +75,14 @@ public class FirstTabFragment extends Fragment {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void makeToast(String text)
+    {
+        Toast.makeText(getActivity(), text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
         unbinder.unbind();
     }
 }

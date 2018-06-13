@@ -1,13 +1,12 @@
 package abhishekint.com.kisannetwork.app.ComposeActivity;
 
-import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.pm.PackageManager;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.telephony.SmsManager;
 
+import java.util.Calendar;
+import java.util.Date;
+
+import abhishekint.com.kisannetwork.sqlite_database.SqLiteHelper;
 import abhishekint.com.kisannetwork.utils.SixDigitRandomNo;
 
 /**
@@ -17,10 +16,12 @@ import abhishekint.com.kisannetwork.utils.SixDigitRandomNo;
 public class ComposeActivityPresenter implements ComposePresenterInterface {
     SixDigitRandomNo sixDigitRandomNo;
     ComposeActivityInterface composeActivityInterface;
-
-    public ComposeActivityPresenter(SixDigitRandomNo sixDigitRandomNo, ComposeActivityInterface composeActivityInterface) {
+    SqLiteHelper sqLiteHelper;
+    public ComposeActivityPresenter(SixDigitRandomNo sixDigitRandomNo, ComposeActivityInterface composeActivityInterface,
+                                    SqLiteHelper sqLiteHelper) {
         this.sixDigitRandomNo = sixDigitRandomNo;
         this.composeActivityInterface = composeActivityInterface;
+        this.sqLiteHelper=sqLiteHelper;
     }
 
     @Override
@@ -28,4 +29,10 @@ public class ComposeActivityPresenter implements ComposePresenterInterface {
         int randmOtp = sixDigitRandomNo.getRandomOTP();
         composeActivityInterface.setText(randmOtp);
     }
+
+    @Override
+    public void saveData(Context context, int otp, String name) {
+        sqLiteHelper.insertAll(name,Integer.toString(otp));
+    }
+
 }

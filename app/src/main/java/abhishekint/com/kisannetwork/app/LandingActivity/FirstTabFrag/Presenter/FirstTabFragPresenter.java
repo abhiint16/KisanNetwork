@@ -1,15 +1,12 @@
-package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag;
+package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Presenter;
 
-import android.content.Context;
-
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View.Adapter.AdapterViewLayer;
 import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.Data;
 import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.TabOneJsonClient;
-import io.reactivex.Observable;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View.FirstTabFragmentInterface;
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -18,9 +15,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class FirstTabFragPresenter implements FirstTabFragPresenterInterface {
     TabOneJsonClient tabOneJsonClient;
+    FirstTabFragmentInterface firstTabFragmentInterface;
 
-    public FirstTabFragPresenter(TabOneJsonClient tabOneJsonClient) {
+    public FirstTabFragPresenter(TabOneJsonClient tabOneJsonClient,FirstTabFragmentInterface firstTabFragmentInterface) {
         this.tabOneJsonClient = tabOneJsonClient;
+        this.firstTabFragmentInterface=firstTabFragmentInterface;
     }
 
     @Override
@@ -31,7 +30,6 @@ public class FirstTabFragPresenter implements FirstTabFragPresenterInterface {
                 .subscribe(new Observer<Data>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
@@ -41,12 +39,11 @@ public class FirstTabFragPresenter implements FirstTabFragPresenterInterface {
 
                     @Override
                     public void onError(Throwable e) {
-
+                        firstTabFragmentInterface.makeToast(e.getMessage());
                     }
 
                     @Override
                     public void onComplete() {
-
                     }
                 });
     }

@@ -1,5 +1,6 @@
 package abhishekint.com.kisannetwork.app.ComposeActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,11 +9,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import javax.inject.Inject;
 
 import abhishekint.com.kisannetwork.MainApplication;
 import abhishekint.com.kisannetwork.R;
+import abhishekint.com.kisannetwork.sqlite_database.SqLiteHelper;
 import abhishekint.com.kisannetwork.utils.SixDigitRandomNo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -30,6 +33,8 @@ public class ComposeActivity extends AppCompatActivity implements ComposeActivit
 
     @Inject
     SixDigitRandomNo sixDigitRandomNo;
+    @Inject
+    SqLiteHelper sqLiteHelper;
 
     Unbinder unbinder;
     ComposePresenterInterface composePresenterInterface;
@@ -50,7 +55,7 @@ public class ComposeActivity extends AppCompatActivity implements ComposeActivit
     }
 
     private void initPresenter() {
-        composePresenterInterface=new ComposeActivityPresenter(sixDigitRandomNo,this);
+        composePresenterInterface=new ComposeActivityPresenter(sixDigitRandomNo,this,sqLiteHelper);
         composePresenterInterface.getOTP();
     }
 
@@ -61,10 +66,22 @@ public class ComposeActivity extends AppCompatActivity implements ComposeActivit
         activity_compose_tv.setText("Hi. Your OTP is: "+otp);
     }
 
+    public void resultOnSuccess() {
+        composePresenterInterface.saveData(getApplicationContext(),otp,getIntent().getStringExtra("firstname")+" "+
+                getIntent().getStringExtra("lastname"));
+    }
+
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("sms:" + getIntent().getLongExtra("phoneno",0)));
         intent.putExtra("sms_body", "Hi. Your OTP is: "+otp);
         startActivity(intent);
+        resultOnSuccess();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

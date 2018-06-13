@@ -1,10 +1,9 @@
-package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag;
+package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +12,7 @@ import android.widget.TextView;
 import abhishekint.com.kisannetwork.R;
 import abhishekint.com.kisannetwork.app.ContactInfoActivity.ContactInfoActivity;
 import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.Data;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Presenter.FirstTabFragPresenterInterface;
 
 /**
  * Created by abhishek on 09-06-2018.
@@ -55,7 +55,7 @@ public class FirstTabFragmentRecyclerAdapter extends RecyclerView.Adapter<FirstT
         TextView item_first_tab_recycler_tv;
         public ViewHolder(View itemView) {
             super(itemView);
-            item_first_tab_recycler_tv=itemView.findViewById(R.id.item_first_tab_recycler_tv);
+            item_first_tab_recycler_tv=(TextView) itemView.findViewById(R.id.item_first_tab_recycler_tv);
             itemView.setOnClickListener(this);
         }
 

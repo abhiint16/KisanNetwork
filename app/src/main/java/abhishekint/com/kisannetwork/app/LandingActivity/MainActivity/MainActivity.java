@@ -15,14 +15,13 @@ import butterknife.Unbinder;
  * Created by abhishek on 09-06-2018.
  */
 
-public class MainActivity extends AppCompatActivity implements MainActivityInterface {
+public class MainActivity extends AppCompatActivity {
 
     @BindView(R.id.main_activity_tab)
     TabLayout tabLayout;
     @BindView(R.id.main_activity_viewpager)
     ViewPager viewPager;
 
-    MainPresenterInterface mainPresenterInterface;
     MainAdapter mainAdapter;
     Unbinder unbinder;
 
@@ -30,7 +29,6 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
         unbinder=ButterKnife.bind(this);
-        initPresenter();
         initTabLayout();
         initAdapter();
         initViewPager();
@@ -48,13 +46,9 @@ public class MainActivity extends AppCompatActivity implements MainActivityInter
         tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void initPresenter() {
-        mainPresenterInterface=new MainPresenter(this);
-    }
-
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onDestroy() {
+        super.onDestroy();
         unbinder.unbind();
     }
 }

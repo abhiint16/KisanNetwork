@@ -7,8 +7,8 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.FirstTabFragment;
-import abhishekint.com.kisannetwork.app.LandingActivity.SecondTabFrag.SecondTabFragment;
+import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View.FirstTabFragment;
+import abhishekint.com.kisannetwork.app.LandingActivity.SecondTabFrag.View.SecondTabFragment;
 
 /**
  * Created by abhishek on 09-06-2018.

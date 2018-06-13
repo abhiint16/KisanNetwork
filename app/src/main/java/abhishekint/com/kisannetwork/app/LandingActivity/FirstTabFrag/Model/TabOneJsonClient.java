@@ -25,7 +25,6 @@ public class TabOneJsonClient {
     public Observable<Data> getData()
     {
         String dataString=jsonToString.loadJSONFromAsset();
-        Log.e("check for data",""+dataString);
         Data data=new Data();
         try {
             JSONObject obj = new JSONObject(dataString);

@@ -59,6 +59,14 @@ public class ContactInfoActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         Intent intent=new Intent(ContactInfoActivity.this, ComposeActivity.class);
         intent.putExtra("phoneno",phone);
+        intent.putExtra("firstname",firstname);
+        intent.putExtra("lastname",lastname);
         startActivity(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbinder.unbind();
     }
 }

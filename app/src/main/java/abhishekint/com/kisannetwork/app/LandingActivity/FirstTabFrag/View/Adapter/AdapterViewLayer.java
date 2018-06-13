@@ -1,4 +1,4 @@
-package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag;
+package abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.View.Adapter;
 
 import abhishekint.com.kisannetwork.app.LandingActivity.FirstTabFrag.Model.Data;
 
